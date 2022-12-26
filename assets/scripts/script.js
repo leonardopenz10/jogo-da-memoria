@@ -14,7 +14,28 @@ let techs = [
     'react'
 ]
 
-createCardsFromTechs(techs)
+let cards = null
+
+startGame()
+
+function startGame(){
+    cards = createCardsFromTechs(techs)
+    shuffleCards(cards)
+    console.log(cards)
+}
+
+function shuffleCards(cards){
+    let currentIndex = cards.length
+    let randomIndex = 0
+
+    while(currentIndex !==0){
+        randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex--
+
+        [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]]
+    }
+
+}
 
 function createCardsFromTechs(techs){
     let cards = []
@@ -23,7 +44,7 @@ function createCardsFromTechs(techs){
         cards.push(createPairFromTechs(tech))
     }
 
-    console.log(cards.flatMap(pair => pair))
+    return (cards.flatMap(pair => pair))
 }
 
 function createPairFromTechs(tech){
